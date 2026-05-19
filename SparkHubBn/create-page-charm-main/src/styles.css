@@ -1,0 +1,165 @@
+@import "tailwindcss" source(none);
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* LightHub palette */
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-clay: var(--clay);
+  --color-clay-soft: var(--clay-soft);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-sand: var(--sand);
+  --color-sand-dark: var(--sand-dark);
+  --color-honey: var(--honey);
+  --color-rose: var(--rose);
+
+  --font-display: "Cormorant Garamond", "Fraunces", Georgia, serif;
+  --font-body: "Lora", "DM Sans", Georgia, serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* LightHub semantic tokens (oklch) — golden-haze / sunlit cafe */
+  --paper: oklch(0.975 0.022 85);
+  --ink: oklch(0.235 0.022 55);
+  --ink-muted: oklch(0.5 0.03 60);
+  --clay: oklch(0.66 0.16 55);
+  --clay-soft: oklch(0.93 0.055 65);
+  --sage: oklch(0.62 0.07 135);
+  --sage-soft: oklch(0.92 0.04 135);
+  --sand: oklch(0.94 0.028 82);
+  --sand-dark: oklch(0.86 0.04 78);
+  --honey: oklch(0.82 0.16 82);
+  --rose: oklch(0.78 0.12 25);
+
+  /* shadcn aliases mapped onto our palette */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--clay);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--sage-soft);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: var(--sand-dark);
+  --input: var(--sand-dark);
+  --ring: var(--clay);
+  --chart-1: var(--clay);
+  --chart-2: var(--sage);
+  --chart-3: var(--honey);
+  --chart-4: var(--rose);
+  --chart-5: var(--ink-muted);
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--clay);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--sand);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--sand-dark);
+  --sidebar-ring: var(--clay);
+}
+
+.dark {
+  --paper: oklch(0.22 0.02 220);
+  --ink: oklch(0.95 0.015 80);
+  --ink-muted: oklch(0.7 0.02 80);
+  --clay: oklch(0.72 0.13 40);
+  --clay-soft: oklch(0.32 0.05 40);
+  --sage: oklch(0.72 0.08 170);
+  --sage-soft: oklch(0.3 0.04 170);
+  --sand: oklch(0.28 0.02 220);
+  --sand-dark: oklch(0.36 0.02 220);
+  --honey: oklch(0.78 0.13 80);
+  --rose: oklch(0.72 0.14 25);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.27 0.02 220);
+  --card-foreground: var(--ink);
+}
+
+.dark body,
+.dark html {
+  background-color: oklch(0.18 0.02 220);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: oklch(0.94 0.013 80);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--clay) 25%, transparent);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .app-shell {
+    width: 100%;
+    max-width: 460px;
+    margin-inline: auto;
+    background-color: var(--color-paper);
+    min-height: 100dvh;
+    box-shadow: 0 0 60px -15px rgba(50, 42, 37, 0.12);
+    position: relative;
+  }
+}
